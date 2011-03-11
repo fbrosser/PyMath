@@ -53,7 +53,7 @@ class mathstuff:
 						N[len(N):] = [(k*a, k*b, k*c)]
 		return sorted(list(set(N)), key=lambda t: t[2])
 
-	# Returns a list of all Pythagorean Triplets for which a,b,c are in [lo, hi]			
+	# Returns a list of all Pythagorean Triplets for which a,b,c are in 	[lo,hi]			
 	def nPythagoreanTriplets(self, lo, hi):
 		return len(self.pythagoreanTriplets(lo,hi))
 		
@@ -148,4 +148,27 @@ class mathstuff:
 			bin[len(bin):] = [(x % 2)]
     			x = x / 2
   		return bin
-
+  		
+  	# Get the sum of the digits in a number
+  	def sumOfDigits(self, x):
+  		return sum(self.digits(x))
+  		
+  	# Get a list of the digits in a number
+  	def digits(self, x):
+  		d = []
+    		x = abs(x)
+  		while(x / 10 > 0):
+  			d.append(x % 10)
+  			x = x / 10
+  		d.append(x % 10)
+  		return d[::-1]		
+  		
+  	# Returns true iff x is a palindrome
+  	def isPalindrome(self, x):
+  		return x == rev(x)
+  		
+  	# Returns true iff x is pandigital
+  	# A pandigital number contains all the numbers 1..n exactly once
+  	def isPandigital(self, x, n):
+  		return sorted(self.digits(x)) == range(1, n+1)
+	
