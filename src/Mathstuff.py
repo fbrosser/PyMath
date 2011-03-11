@@ -123,7 +123,7 @@ class mathstuff:
 
 		for r in range(len(tN)):
 			a = pow(tN[r], d, n)
-			if a == 1:
+			if(a == 1):
 				continue
 			for i in range (s - 1):
 				if(a == n - 1):
@@ -132,7 +132,69 @@ class mathstuff:
 			if (a != n - 1):
 				return False
 		return True
+		
+	### Circular Primes
+	# A prime is circular if all rotations of its digits are prime
+		
+	# Returns true iff the given number is prime and circular
+	def isCircularPrime(self, x):
+		r = self.rotations(x)
+		for i in range(0, len(r)):
+			if not(self.isPrime(r[i])):
+				return False
+		return True
+	
+	# Returns a list of all the circular primes upto a given number
+	def circularPrimes(self, upTo):
+		return [x for x in self.primesSieve(upTo) if (self.isCircularPrime(x))]
+	
+	# Returns the number of circular primes upto a given number
+	def nCircularPrimes(self, upTo):
+		return len(self.circularPrimes(upTo))
+		
+	### Permutations and Rotations
+	
+	# Returns a list of all the rotations of the digits in a given number
+	def rotations(self, x):
+		d = self.digits(x)[::-1]
+		r = []
+		n = len(d)
+		for i in range (0, n):
+			rr = 0
+			for j in range(0, n):
+				rr = rr + (d[(i + j) % n] * (10**j))
+			r.append(rr)
+		return r
 
+	# Return a list of all the permutations of the given sequence
+	def permutations(self, iterable):
+		return list(set(self.doPermutations(iterable)))
+	
+	# Generate permutations (NB! From itertools.permutations !)
+	def doPermutations(self, iterable, r=None):
+    		pool = tuple(iterable)
+    		n = len(pool)
+    		if(r is None):
+    			r = n
+    		if r > n:
+        		return
+    		indices = range(n)
+    		cycles = range(n, n-r, -1)
+    		yield tuple(pool[i] for i in indices[:r])
+    		while n:
+        		for i in reversed(range(r)):
+            			cycles[i] -= 1
+            			if cycles[i] == 0:
+               				indices[i:] = indices[i+1:] + indices[i:i+1]
+                			cycles[i] = n - i
+            			else:
+                			j = cycles[i]
+                			indices[i], indices[-j] = indices[-j], indices[i]
+                			yield tuple(pool[i] for i in indices[:r])
+                			break
+        		else:
+            			return
+  
 
 	### Helper Functions
 	# Useful functions which do not belong in any particular category 
@@ -171,4 +233,5 @@ class mathstuff:
   	# A pandigital number contains all the numbers 1..n exactly once
   	def isPandigital(self, x, n):
   		return sorted(self.digits(x)) == range(1, n+1)
+  		
 	
