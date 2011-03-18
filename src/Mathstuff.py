@@ -94,6 +94,21 @@ class mathstuff:
 		else:
 			return self.MillerRabin(x)
 
+	# Returns true iff the two given numbers are coprime (no common divisors apart from 1).
+	def coPrime(self, x, y):
+		return (self.gcd(x, y) == 1)
+
+	# Returns a list of the prime factors of a given number 
+	def factor(self, n):  
+		if (n == 1 or self.isPrime(n)): 
+			return [n]
+		factors = []
+		for i in self.primes(self.squareRootInteger(n)):
+		        while n % i == 0:  
+				factors.append(i)
+				n = n / i
+		return factors
+
 	# Returns a list of all the primes below a given number by using primality checks
 	def primes(self, upTo):
 		return [x for x in range(upTo) if (self.isPrime(x))]
@@ -243,7 +258,36 @@ class mathstuff:
   	# A pandigital number contains all the numbers 1..n exactly once
   	def isPandigital(self, x, n):
   		return sorted(self.digits(x)) == range(1, n+1)
-  		
+
+	# Simple square root function
+	def squareRoot(self, x):
+		return x ** 0.5
+
+	# Returns the square root as an integer (rounded to neareast integer)
+	def squareRootInteger(self, x):
+		s = x ** 0.5
+		return int(s)
+
+	# Euler's totient function
+	## The number of positive integers less than or equal to a given number n that are coprime to n 
+  	def totient(self, n):
+		i = 0		
+		for x in range (1, n+1):
+			if(self.coPrime(x, n)):
+				i = i + 1
+		return i
+
+	# Returns the greatest common divisor
+	def gcd(self, x, y):
+		if (x == 0):
+			return y
+		while (not (y == 0)):
+			if(x > y):
+				x = x - y
+			else:
+				y = y - x
+		return x
+
   	# Returns a list of all triangle numbers upto a given number
   	# The n'th triangle number is given by Tn = n(n+1)/2
   	def triangleNumbers(self, upTo):
