@@ -1,4 +1,4 @@
-# Mathstuff.py \/ /\ \\
+### Mathstuff.py \/ /\ \\
 
 # A collection of useful math functions 
 # (Mainly written for Project Euler Problems)
