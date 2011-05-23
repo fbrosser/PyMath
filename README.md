@@ -1,6 +1,7 @@
 # PyMath
 
 A collection of useful mathematic functions, written mainly for Project Euler problems.
+
 Includes functions for primes, lychrel numbers, pythagorean triplets, etc.
 
 ### Example
