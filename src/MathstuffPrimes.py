@@ -30,6 +30,18 @@ class mathstuffPrimes:
 				n = n / i
 		return factors
 
+	# Returns a list of the first N prime numbers
+	def firstNprimes(self, N):
+		if(N<=0):
+			return []
+		primes = [2]
+		i = 3;
+		while(len(primes) < N):
+			if (self.isPrime(i)):
+        			primes.append(i)
+			i+=2
+    		return primes
+
 	# Returns a list of all the primes below a given number by using primality checks
 	def primes(self, upTo):
 		return [x for x in range(upTo) if (self.isPrime(x))]

@@ -1,7 +1,8 @@
 # Test.py \/ /\ \\
 from Bcolors import bcolors
-
+from Mathstuff import mathstuff
 B = bcolors("mathstuff")
+M = mathstuff()
 
 B.check( "PythagoreanTripletsBySum(1000) == [(200, 375, 425)]" )
 B.check( "sumOfDigits(4) == 4" )
@@ -22,3 +23,5 @@ B.check( "rotations(197) == [197, 719, 971]" )
 B.check( "circularPrimes(100) == [2, 3, 5, 7, 11, 13, 17, 31, 37, 71, 73, 79, 97]" )
 B.check( "nCircularPrimes(100) == 13" )
 B.check( "circularPrimes(100) == [2, 3, 5, 7, 11, 13, 17, 31, 37, 71, 73, 79, 97]" )
+B.check( "firstNprimes(10) == [2, 3, 5, 7, 11, 13, 17, 19, 23, 29]" )
+
